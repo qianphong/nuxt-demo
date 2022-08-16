@@ -2,13 +2,13 @@
 const route = useRoute()
 const user = useUserStore()
 const name = route.params.id
-
+const nickname = ref('')
 watchEffect(() => {
   user.setNewName(route.params.id as string)
 })
 
 definePageMeta({
-  layout: 'home',
+  layout: 'default',
 })
 </script>
 
@@ -34,8 +34,8 @@ definePageMeta({
         </ul>
       </p>
     </template>
-
-    <Counter />
+    {{ nickname }}
+    <Counter v-model:name.capitalize="nickname" />
 
     <div>
       <NuxtLink
